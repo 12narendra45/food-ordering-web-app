@@ -1,0 +1,228 @@
+.landing-page {
+  min-height: 100vh;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 50%, #5dade2 100%);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  opacity: 0.95;
+  font-weight: 700;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-section .btn {
+  border-radius: 12px;
+  font-weight: 700;
+  padding: 12px 30px;
+  transition: all 0.3s;
+  margin: 0 10px;
+}
+
+.hero-section .btn-success {
+  background-color: white;
+  color: #2980b9;
+  border: none;
+}
+
+.hero-section .btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #2980b9;
+}
+
+.hero-section .btn-primary {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.hero-section .btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.features-section {
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+}
+
+.features-section h2 {
+  color: #2c3e50;
+  font-weight: 900;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.feature-card {
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.feature-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card .card-title {
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.feature-card .card-text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+  color: white;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section .lead {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+}
+
+.cta-section .btn-light {
+  background-color: white;
+  color: #2980b9;
+  border: none;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 12px 30px;
+  transition: all 0.3s;
+}
+
+.cta-section .btn-light:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-section {
+    padding: 50px 20px;
+  }
+
+  .features-section h2 {
+    font-size: 2rem;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+
+  .cta-section .lead {
+    font-size: 1.1rem;
+  }
+
+  .hero-section .btn,
+  .cta-section .btn-light {
+    margin: 8px 5px;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+
