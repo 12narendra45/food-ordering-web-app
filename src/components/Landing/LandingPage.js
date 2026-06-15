@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Button, Row, Col, Card } from 'react-bootstrap';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 import './LandingPage.css';
 
 function LandingPage() {

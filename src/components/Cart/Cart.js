@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Container, Button, ListGroup, Card, Row, Col, Alert, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 import './Cart.css';
 
 function Cart() {

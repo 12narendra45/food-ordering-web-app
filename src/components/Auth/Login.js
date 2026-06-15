@@ -1,16 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 import './Auth.css';
 
-function Register() {
-  const [name, setName] = useState('');
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useContext(CartContext);
@@ -23,21 +20,14 @@ function Register() {
     }
   }, [navigate]);
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
     setLoading(true);
 
     // Validation
-    if (!name || !email || !password || !confirmPassword) {
+    if (!email || !password) {
       setError('Please fill in all fields');
-      setLoading(false);
-      return;
-    }
-
-    if (name.length < 2) {
-      setError('Name must be at least 2 characters');
       setLoading(false);
       return;
     }
@@ -54,33 +44,23 @@ function Register() {
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
     // Simulate API call
     setTimeout(() => {
       // Store user data in localStorage
       const userData = {
         id: Date.now(),
-        name,
         email,
+        name: email.split('@')[0],
         password: password, // In production, never store passwords!
-        registrationTime: new Date().toISOString(),
+        loginTime: new Date().toISOString(),
       };
 
       localStorage.setItem('user', JSON.stringify(userData));
-      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userEmail', email); // For quick reference
       setUser(userData);
 
-      setSuccess('Registration successful! Redirecting...');
       setLoading(false);
-
-      setTimeout(() => {
-        navigate('/menu');
-      }, 1500);
+      navigate('/menu');
     }, 500);
   };
 
@@ -88,27 +68,14 @@ function Register() {
     <Container className="auth-container">
       <Card className="auth-card">
         <Card.Body className="p-5">
-          <h2 className="text-center mb-2 auth-title">Join DineDirect!</h2>
+          <h2 className="text-center mb-2 auth-title">Welcome Back!</h2>
           <p className="text-center text-muted mb-4 auth-subtitle">
-            Create an account and start ordering amazing food
+            Login to DineDirect and order your favorite food
           </p>
 
           {error && <Alert variant="danger" className="alert-custom">{error}</Alert>}
-          {success && <Alert variant="success" className="alert-custom">{success}</Alert>}
 
-          <Form onSubmit={handleRegister}>
-            <Form.Group className="mb-3" controlId="name">
-              <Form.Label className="fw-bold">Full Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-control-lg input-modern"
-                disabled={loading}
-              />
-            </Form.Group>
-
+          <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label className="fw-bold">Email Address</Form.Label>
               <Form.Control
@@ -121,37 +88,28 @@ function Register() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="fw-bold">🔐 Password</Form.Label>
+            <Form.Group className="mb-4" controlId="password">
+              <Form.Label className="fw-bold">Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter password (min 3 chars)"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control-lg input-modern"
                 disabled={loading}
               />
-            </Form.Group>
-
-            <Form.Group className="mb-4" controlId="confirmPassword">
-              <Form.Label className="fw-bold">🔐 Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="form-control-lg input-modern"
-                disabled={loading}
-              />
+              <Form.Text className="text-muted small">
+                Demo: Use any email and password (min 3 chars)
+              </Form.Text>
             </Form.Group>
 
             <Button
-              variant="success"
+              variant="primary"
               className="w-100 mb-3 btn-lg btn-modern fw-bold"
               type="submit"
               disabled={loading}
             >
-              {loading ? '⏳ Creating Account...' : '✨ Create Account'}
+              {loading ? '⏳ Logging in...' : '🚀 Login'}
             </Button>
           </Form>
 
@@ -159,14 +117,14 @@ function Register() {
 
           <div className="text-center">
             <p className="mb-2">
-              Already have an account?{' '}
+              Don't have an account?{' '}
               <Button
                 variant="link"
                 className="p-0 text-decoration-none link-modern"
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/register')}
                 disabled={loading}
               >
-                Login here
+                Create one now
               </Button>
             </p>
             <Button
@@ -184,4 +142,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Container, Card, Button, Form, Row, Col, Alert, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
-import { foodItems } from '../data/foodItems';
+import { CartContext } from '../../context/CartContext';
+import { foodItems } from '../../data/foodItems';
 import './Menu.css';
 
 function Menu() {
